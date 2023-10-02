@@ -1,0 +1,49 @@
+-Page Nedded Enviroment [x]
+	. Usamos axios para traer de nuestra propia API Rest los datos con la estructura establecida en el BackEnd [x]
+	. hacer un dispatch para cargar la data al estado global [x]
+-Buscar Pokemones []
+	. Con la SearchBar activar el SearchHandler [x]
+	   .SearchHandler []
+	    - Hacer una busqueda OnChange siempre que se hayan ingresado mas de 3 Caracteres []
+      - Hacer una busqueda OnClick siempre que se hayan ingresado mas de 3 Caracteres []
+	. Suscribir el componente de Cards al store.pokemons []
+-Visualizar la informacion de los pokemones
+	. Representar los pokemons traidos en Cards
+	. Tener una ruta por id para el Detail(FRONTEND)
+	. Contar con una pagina Detail(FRONTEND)
+-Filtrarlos
+	. Filtrar con el cambio local de estado de la SearchBar para renderizar con el typeo mientras este pase las 3 letras
+-Ordenarlos
+	. Usar un metodo sort en el array de pokemones antes de pasarselos al map
+	  - Para hacer los sort haremos una copia del array para pasarle al map // OBSERVACION -> Podriamos hacer un array.length 2 que tenga dentro 2 arrays, uno que vamos a ordenar como pida el usuario y el otro el estado inicial para deshacer los filtros
+-Crear nuevos pokemones
+	. Enrutamos a la Form Page(FRONTEND)
+	. Hacemos un POST de los datos(validados) y esperamos la respuesta, en base a eso pedimos los datos de nuevo o le damos el mensaje de exito
+-Editar pokemones customs creados por el usuario
+	.
+
+__ BACKEND __
+
+Rutas Exigidas:
+. GET
+ - /pokemons -> Obtiene un array de Pokemones
+ - /pokemons/:idPokemon -> Detalle de un Pokemon especifico
+ - /pokemons/name?"..." -> Obtener todos los Pokemons que contengan la palabra ingresada como query parameter
+ - /
+. POST
+ - /pokemons
+. GET
+ - /types
+
+__ FRONTEND __
+
+. Landig Page
+. Home Page     *
+. Detail Page   *
+. Form Page     * (Create/Edit Custom Pokemon)
+
+== TESTING ( Opcional )
+
+. Al menos tener un componente del front con sus test respectivos
+. Al menos tener dos rutas del backend con sus test respectivos
+. Al menos tener un modelo de la base de datos con sus test respectivos
