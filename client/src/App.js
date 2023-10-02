@@ -2,12 +2,12 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPk } from "./redux/actions";
-import Nav from "./components/Nav/Nav";
 import Landing from "./views/Landing/Landing"
 import Home from "./views/Home/Home";
 import Detail from "./views/Detail/Detail";
 import Customs from "./views/Customs/Customs";
 import "./App.css";
+import Header from "./components/Header/Header";
 
 function App() {
   const location = useLocation();
@@ -24,8 +24,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>PokeApp 🎱</h1>
-        {location.pathname !== "/" && <Nav />}
+        {location.pathname !== "/" && <Header />}
       </header>
       <Routes>
         <Route path="/" element={<Landing/>} />

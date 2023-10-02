@@ -1,18 +1,4 @@
 .App {
    text-align: center;
-}
-
-.logo {
-   width: 40vh;
-   display: block;
-   margin: 0 auto;
-}
-
-header {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: space-between;
-  padding: 16px;
+   font-family: Roboto ,sans-serif;
 }
