@@ -4,6 +4,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: #fff0e6;
+  border-bottom: #ff6900 1px solid;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -11,3 +12,4 @@
   margin-left: 10px;
   max-width: 350px;
 }
+

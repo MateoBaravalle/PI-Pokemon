@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { nextPage, previousPage } from "../../redux/actions";
 import Cards from "../../components/Cards/Cards";
+import SearchBar from "../../components/SearchBar/SearchBar";
 import "./Home.css";
 
 // This component is used to display the pokemon cards on the home page
@@ -26,7 +27,8 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <div className="home-card-container">
+      <SearchBar />
+      <div className="home-cards-container">
         <Cards page={page} />
       </div>
       <div className="home-pagination">

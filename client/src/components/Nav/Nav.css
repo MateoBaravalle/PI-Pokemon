@@ -1,6 +1,11 @@
 nav {
   height: auto;
-  width: 100%;
+  width: auto;
+  padding: 8px;
+  background-color: #ffaf70;
+  border-bottom: 1px solid #ff6900;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 }
 
 nav ul {
@@ -10,6 +15,7 @@ nav ul {
   align-content: center;
   list-style-type: none;
   padding: 0;
+  margin: auto;
 }
 
 nav a {

@@ -1,9 +1,7 @@
-import { Link, useLocation } from "react-router-dom";
-import SearchBar from '../SearchBar/SearchBar'
+import { Link } from "react-router-dom";
 import './Nav.css';
 
 const Nav = () => {
-  const location = useLocation();
   return (
     <nav className="nav">
       <ul>
@@ -17,7 +15,6 @@ const Nav = () => {
           <Link to="/Customs">Customs</Link>
         </li>
       </ul>
-      {location.pathname === "/Home" && <SearchBar />}
     </nav>
   );
 };
