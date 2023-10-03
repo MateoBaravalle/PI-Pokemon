@@ -7,7 +7,7 @@ import { useEffect } from "react";
 const Cards = ({ page }) => {
   const pokemon = useSelector((state) => state.pokemons);
   const ordenamiento = useSelector((state) => state.ordenamiento);
-  
+
   // Calculate the index of the first and last pokemon to display
   const indexOfLastPk = page * 20;
   const indexOfFirstPk = indexOfLastPk - 20;
