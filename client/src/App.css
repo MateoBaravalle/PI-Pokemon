@@ -1,4 +1,9 @@
 .App {
   text-align: center;
   font-family: 'Architect Daughter', cursive;
+  background-image: url('C:/Users/Mateo/OneDrive/Escritorio/Henry/PI-Pokemon-main/client/src/assets/HomeBg.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
 }

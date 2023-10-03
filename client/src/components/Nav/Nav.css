@@ -2,10 +2,7 @@ nav {
   height: auto;
   width: auto;
   padding: 8px;
-  background-color: #ffaf70;
-  border-bottom: 1px solid #ff6900;
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
+  background-color: rgb(0, 0, 0, 0.15);
 }
 
 nav ul {

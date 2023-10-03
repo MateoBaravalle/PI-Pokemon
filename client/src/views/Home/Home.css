@@ -4,11 +4,7 @@
   grid-template-columns: 1fr;
   align-items: center;
   justify-content: center;
-  background-image: url('C:/Users/Mateo/OneDrive/Escritorio/Henry/PI-Pokemon-main/client/src/assets/HomeBg.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed; /* added property */
+  background-color: rgb(0, 0, 0, 0.15);
 }
 
 .home-cards-container {

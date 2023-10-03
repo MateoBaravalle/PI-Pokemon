@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <>
       <div className="header-container">
-        <Logo PrimaryColor='#ff6900' SecondaryColor='#ce0037'/>
+        <Logo PrimaryColor='#ffffff' SecondaryColor='#ce0037'/>
         <UserMenu />
       </div>
       <Nav />
