@@ -20,12 +20,15 @@ const getAllTypes = async (req, res) => {
 
 // GET operation for getting specific Types by ID from DB
 const getTypes = async (req, res) => {
-  const ids = [...req.body];
+  const ids = req.body.dataTypes;
+  console.log(ids);
   try {
-    const types = ids.map(async (ID) => {
-      const type = await Type.findOne({ where: { ID } });
-      return type.dataValues.NAME;
-    });
+    const types = await Promise.all(
+      ids.map(async (ID) => {
+        const type = await Type.findOne({ where: { ID } });
+        return type.dataValues.NAME;
+      })
+    );
     res.status(200).send(types);
   } catch (error) {
     console.error(error);

@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import {
-  FaUserCircle,
-  FaSignOutAlt,
-} from "react-icons/fa";
+import { FaUserCircle, FaSignOutAlt } from "react-icons/fa";
 import "./UserMenu.css";
 
 const UserMenu = () => {
@@ -18,22 +15,20 @@ const UserMenu = () => {
   };
 
   useEffect(() => {
-    if(user.name?.length > 0) {
+    if (user.name?.length > 0) {
       setAuth(true);
     }
   }, [user]);
 
-  if (!auth)
-  {
+  if (!auth) {
     username = "Guest";
   } else {
     username = user.username;
-  };
+  }
 
   return (
     <div className="user-menu">
       <span className="user-menu-name">{username}</span>
-      <vr/>
       <button className="user-menu-button" onClick={toggleMenu}>
         <FaUserCircle />
       </button>

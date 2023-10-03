@@ -17,7 +17,9 @@ export const validateUser = (username, password) => async (dispatch) => {
 
 export const getUserByEmail = (email) => async (dispatch) => {
   try {
-    const { data } = await axios.get(`http://localhost:3001/users?email=${email}`);
+    const { data } = await axios.get(
+      `http://localhost:3001/users?email=${email}`
+    );
     dispatch({
       type: actions.GET_USER_BY_EMAIL,
       payload: data,
@@ -25,7 +27,7 @@ export const getUserByEmail = (email) => async (dispatch) => {
   } catch (error) {
     console.error(error);
   }
-}
+};
 
 export const createUser = (user) => async (dispatch) => {
   try {
@@ -66,6 +68,15 @@ export const deleteUser = (id) => async (dispatch) => {
   }
 };
 
+export const getAllTypes = () => async () => {
+  try {
+    const msg = await axios.get("http://localhost:3001/types/all");
+    console.log(msg.data);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const getAllPk = () => async (dispatch) => {
   try {
     const { data } = await axios.get(`http://localhost:3001/pokemon`);
@@ -80,7 +91,9 @@ export const getAllPk = () => async (dispatch) => {
 
 export const searchPk = (name) => async (dispatch) => {
   try {
-    const { data } = await axios.get(`http://localhost:3001/pokemon/name=${name}`);
+    const { data } = await axios.get(
+      `http://localhost:3001/pokemon/name=${name}`
+    );
     dispatch({
       type: actions.SEARCH_PK,
       payload: data,
@@ -93,6 +106,13 @@ export const searchPk = (name) => async (dispatch) => {
 export const getOnePk = (id) => async (dispatch) => {
   try {
     const { data } = await axios.get(`http://localhost:3001/pokemon/${id}`);
+    const dataTypes = data.TYPES;
+    // GET Types, sending TYPES array on body request
+    const types = await axios.post("http://localhost:3001/types", {
+      dataTypes,
+    });
+    data.TYPES = types;
+
     dispatch({
       type: actions.GET_ONE_PK,
       payload: data,
@@ -116,15 +136,12 @@ export const getCustomsPk = () => async (dispatch) => {
 
 export const createCustomPk = (pokemon) => async (dispatch) => {
   try {
-    const { data } = await axios.post(
-      `http://localhost:3001/pokemon`,
-      pokemon
-    );
+    const { data } = await axios.post(`http://localhost:3001/pokemon`, pokemon);
     dispatch({
       type: actions.CREATE_CUSTOM_PK,
       payload: data,
     });
-    if(!data.error) return data;
+    if (!data.error) return data;
   } catch (error) {
     console.error(error);
   }
@@ -140,7 +157,7 @@ export const updateCustomPk = (pokemon) => async (dispatch) => {
       type: actions.UPDATE_CUSTOM_PK,
       payload: data,
     });
-    if(!data.error) return data;
+    if (!data.error) return data;
   } catch (error) {
     console.error(error);
   }
@@ -148,9 +165,7 @@ export const updateCustomPk = (pokemon) => async (dispatch) => {
 
 export const deleteCustomPk = (id) => async (dispatch) => {
   try {
-    await axios.delete(
-      `http://localhost:3001/pokemon/${id}`
-    );
+    await axios.delete(`http://localhost:3001/pokemon/${id}`);
     dispatch({
       type: actions.DELETE_CUSTOM_PK,
       payload: id,
@@ -161,7 +176,6 @@ export const deleteCustomPk = (id) => async (dispatch) => {
 };
 
 export const nextPage = () => {
-
   return {
     type: actions.NEXT_PAGE,
   };

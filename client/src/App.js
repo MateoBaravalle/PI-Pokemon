@@ -1,7 +1,7 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPk } from "./redux/actions";
+import { getAllPk, getAllTypes } from "./redux/actions";
 import Landing from "./views/Landing/Landing"
 import Home from "./views/Home/Home";
 import Detail from "./views/Detail/Detail";
@@ -18,6 +18,7 @@ function App() {
   useEffect(() => {
     if (pokemons.length === 0) {
       dispatch(getAllPk());
+      dispatch(getAllTypes());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
