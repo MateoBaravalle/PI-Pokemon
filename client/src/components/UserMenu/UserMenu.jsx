@@ -33,6 +33,7 @@ const UserMenu = () => {
   return (
     <div className="user-menu">
       <span className="user-menu-name">{username}</span>
+      <vr/>
       <button className="user-menu-button" onClick={toggleMenu}>
         <FaUserCircle />
       </button>

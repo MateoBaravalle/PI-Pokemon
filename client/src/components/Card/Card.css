@@ -1,4 +1,5 @@
 .card {
+  color: black;
   display: grid;
   grid-template-rows: 3fr 1fr;
   width: 240px;

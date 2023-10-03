@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { nextPage, previousPage } from "../../redux/actions";
 import Cards from "../../components/Cards/Cards";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import Filter from "../../components/Filter/Filter";
 import "./Home.css";
 
 // This component is used to display the pokemon cards on the home page
@@ -28,25 +29,18 @@ const Home = () => {
   return (
     <div className="home-container">
       <SearchBar />
+      <Filter />
       <div className="home-cards-container">
         <Cards page={page} />
       </div>
       <div className="home-pagination">
-        <button className="home-pagination-btn" onClick={previousPageHandler}>
-          Prev
+        <button className={`home-pagination-btn ${page === 1 ? 'hidden' : ''}`} onClick={previousPageHandler}>
+          ←
+        </button>  
+        <p className="home-pagination-page">{page}</p>
+        <button className={`home-pagination-btn ${page === maxPage ? 'hidden' : ''}`} onClick={nextPageHandler}>
+          →
         </button>
-        <p>{page}</p>
-        <button className="home-pagination-btn" onClick={nextPageHandler}>
-          Next
-        </button>
-      </div>
-      <div className="footer">
-        <p>Created by MateoBaravalle - 2023</p>
-        <div className="footer-links">
-          <a href="linktoGithub">Github</a>
-          <a href="linktoLinkedin">Linkedin</a>
-          <a href="linktoWspMe">Contact me</a>
-        </div>
       </div>
     </div>
   );

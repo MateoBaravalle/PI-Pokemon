@@ -16,7 +16,7 @@ const Card = ({ id, name }) => {
     <div className="card" onClick={()=>{clickHandler(id)}}>
       <div className="card-img">
         <img
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`} //CAMBIAR
           alt={name}
         />
       </div>

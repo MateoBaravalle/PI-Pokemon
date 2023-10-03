@@ -5,6 +5,7 @@
   align-items: center;
   justify-content: center;
   background-color: rgb(0, 0, 0, 0.15);
+  color: #ffffff;
 }
 
 .home-cards-container {
@@ -17,13 +18,13 @@
 
 .home-pagination {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-self: center;
   align-items: center;
-  width: fit-content;
+  width: 105px;
   border: 1px solid black;
   border-radius: 0.5rem;
-  background-color: rgb(250, 207, 152);
+  background-color: rgb(0, 0, 0, 0.15);
   margin: 0.5rem;
 }
 
@@ -32,11 +33,15 @@
   padding: 0.4rem;
   border: 1px solid black;
   border-radius: 0.5rem;
-  background-color: antiquewhite;
+  background-color: transparent;
   cursor: pointer;
 }
 
-.home-pagination p {
+.hidden {
+  visibility: hidden;
+}
+
+.home-pagination-page {
   margin: 0;
   padding: 0.1rem;
   padding-left: 0.5rem;
@@ -47,45 +52,6 @@
 }
 
 .home-pagination-btn:hover {
-  background-color: #f5f5f5;
-  transition: all 0.3s ease-in-out;
-}
-
-.footer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
-  align-items: center;
-  background-color: rgb(250, 207, 152);
-  padding: 0.5rem;
-  border-top: 1px solid black;
-}
-
-.footer p {
-  margin: 0;
-  padding: 0;
-}
-
-.footer-links {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.footer-links a {
-  margin: 0.5rem;
-  padding: 0.5rem;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-  background-color: antiquewhite;
-  text-decoration: none;
-  color: black;
-}
-
-.footer-links a:hover {
   background-color: #f5f5f5;
   transition: all 0.3s ease-in-out;
 }

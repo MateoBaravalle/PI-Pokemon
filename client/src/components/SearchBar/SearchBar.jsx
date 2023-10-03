@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { searchPk } from "../../redux/actions";
-// import searchIcon from "../../assets/search-svgrepo-com.svg";
+import { getAllPk, searchPk } from "../../redux/actions";
 import "./SearchBar.css";
 
 const SearchBar = () => {
@@ -13,7 +12,7 @@ const SearchBar = () => {
     setName(e.target.value);
 
     if (e.target.value === "") {
-      dispatch(searchPk(""));
+      dispatch(getAllPk(""));
     } else if (e.target.value.length > 2) {
       dispatch(searchPk(e.target.value));
     }

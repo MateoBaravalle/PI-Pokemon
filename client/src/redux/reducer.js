@@ -2,6 +2,7 @@ import * as actions from "./actionTypes";
 
 const initialState = {
   pokemons: [],
+  ordenamiento: [],
   pokeDetail: {},
   authUser: false,
   user: {},

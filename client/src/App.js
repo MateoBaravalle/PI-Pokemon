@@ -8,6 +8,7 @@ import Detail from "./views/Detail/Detail";
 import Customs from "./views/Customs/Customs";
 import "./App.css";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const location = useLocation();
@@ -33,6 +34,7 @@ function App() {
         <Route path="/Customs" element={<Customs />} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
+      {location.pathname !== "/" && <Footer />}
     </div>
   );
 }
