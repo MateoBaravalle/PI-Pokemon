@@ -22,12 +22,12 @@ const Cards = ({ page }) => {
 
   useEffect(() => {
     //Each pageChange will update the pokemon displayed
-  }, [page]);
+  }, [page, ordenamiento]);
 
   return (
     <>
       {currentPks.map((pk) => (
-        <Card key={pk.ID} id={pk.ID} name={pk.NAME} />
+        <Card key={pk.ID} id={pk.ID}/>
       ))}
     </>
   );

@@ -17,20 +17,20 @@
 
 .home-pagination {
   display: grid;
+  margin: 0.5rem;
+  width: 105px;
   grid-template-columns: 1fr 1fr 1fr;
   justify-self: center;
   align-items: center;
-  width: 105px;
-  border: 1px solid black;
   border-radius: 0.5rem;
-  background-color: rgb(0, 0, 0, 0.15);
-  margin: 0.5rem;
+  background-color: rgb(0, 0, 0, 0.25);
 }
 
 .home-pagination-btn {
+  color: white;
   margin: 0.3rem;
   padding: 0.4rem;
-  border: 1px solid black;
+  border: 1px solid #80808060;
   border-radius: 0.5rem;
   background-color: transparent;
   cursor: pointer;
@@ -42,15 +42,17 @@
 
 .home-pagination-page {
   margin: 0;
-  padding: 0.1rem;
+  padding: 0.15rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  border: 1px solid black;
+  border: 1px solid #80808060;
   border-radius: 0.5rem;
-  background-color: antiquewhite;
 }
 
 .home-pagination-btn:hover {
-  background-color: #f5f5f5;
   transition: all 0.3s ease-in-out;
+  color: #ce0037;
+  background-color: rgb(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 10px #ce0037;
+  text-shadow: 0px 0px 7px #ce0037;
 }

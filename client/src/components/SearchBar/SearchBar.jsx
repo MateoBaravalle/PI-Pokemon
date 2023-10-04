@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getAllPk, searchPk } from "../../redux/actions";
+import Filter from "../Filter/Filter";
 import "./SearchBar.css";
 
 const SearchBar = () => {
@@ -19,15 +20,18 @@ const SearchBar = () => {
   }
 
   return (
-    <div className="search-bar-container">
-      <input
-        type="text"
-        className="search-bar"
-        placeholder="Search..."
-        value={name}
-        onChange={changeHandler}
-      />
-    </div>
+    <>
+      <div className="search-bar-container">
+        <input
+          type="text"
+          className="search-bar"
+          placeholder="Search..."
+          value={name}
+          onChange={changeHandler}
+          />
+      </div>
+      <Filter />
+    </>
   );
 };
 

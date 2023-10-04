@@ -19,6 +19,9 @@ const cleanPkAll = (pkData) => {
 
     // Sanitize the SRC: UUIDV4 -> DB, URL -> API
     cleanedPk.ID = pkData.ID;
+
+    // Sanitize the TYPES
+    cleanedPk.TYPES = pkData.TYPES;
   }
 
   return cleanedPk;

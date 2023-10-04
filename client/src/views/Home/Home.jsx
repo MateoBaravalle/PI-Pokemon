@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { nextPage, previousPage } from "../../redux/actions";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import Filter from "../../components/Filter/Filter";
 import Cards from "../../components/Cards/Cards";
 import "./Home.css";
 
@@ -29,7 +28,6 @@ const Home = () => {
   return (
     <div className="home-container">
       <SearchBar />
-      <Filter />
       <div className="home-cards-container">
         <Cards page={page} />
       </div>
