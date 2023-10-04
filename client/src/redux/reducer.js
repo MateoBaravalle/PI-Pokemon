@@ -11,6 +11,11 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actions.CLEAR_DETAIL:
+      return {
+        ...state,
+        pokeDetail: {},
+      };
     case actions.CREATE_CUSTOM_PK:
       return {
         ...state,

@@ -11,7 +11,7 @@ const getAllTypes = async (req, res) => {
         data.results.map(async ({ name }) => Type.create({ NAME: name }))
       );
     }
-    res.status(200).send(types);
+    res.status(200).send("Types added to DB");
   } catch (error) {
     console.error(error);
     res.status(500).send("Server Error");

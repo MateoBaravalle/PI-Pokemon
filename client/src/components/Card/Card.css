@@ -6,20 +6,19 @@
   height: 225px;
   margin: 1.5rem;
   border-radius: 0.5rem;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px #ccc;
   cursor: pointer;
 }
 
 .card-img {
-  display: flex;
   width: auto;
   height: auto;
-  justify-content: center;
   background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5bbf58a6-1e85-4cfe-83fd-02df6f482b45/de8nlib-6bed7b3d-3d7e-4763-bb60-18f5ee0127fd.png/v1/fill/w_1024,h_652,q_80,strp/background_prairie_pokemon_screencapture_by_nemotrex_de8nlib-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjUyIiwicGF0aCI6IlwvZlwvNWJiZjU4YTYtMWU4NS00Y2ZlLTgzZmQtMDJkZjZmNDgyYjQ1XC9kZThubGliLTZiZWQ3YjNkLTNkN2UtNDc2My1iYjYwLTE4ZjVlZTAxMjdmZC5wbmciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.ZVgNGi61AOkC068E-wphWmAUW8amj0MiJySqDcMCVh8");
-  background-size: cover;
+  background-size: 115%;
   background-position: center;
-  border: 1px solid black;
+  border: 1px solid grey;
   border-bottom: none ;
+  border-top: none;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
 }
@@ -29,24 +28,20 @@
 }
 
 .card-name {
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 17px;
+  font-size: 18px;
   font-weight: bold;
-  background-color: #fff0e6;
-  border: 1px solid black;
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
+  border: 1px solid grey;
+  background-color: rgb(0, 0, 0, 0.3);
 }
 
 .card:hover {
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0.5rem #ccc;
   transform: scale(1.05);
-  transition: all 0.3s ease-in-out;
-}
-
-.card-name:hover {
-  background-color: #f5f5f5;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }

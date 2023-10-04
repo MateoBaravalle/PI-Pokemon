@@ -12,6 +12,7 @@ export const GET_CUSTOMS_PK = "GET_CUSTOMS_PK"; //GET getAllPkDB -> API Rest
 export const CREATE_CUSTOM_PK = "CREATE_CUSTOM_PK"; //POST createPkDB -> API Rest
 export const UPDATE_CUSTOM_PK = "UPDATE_CUSTOM_PK"; //PUT updatePkDB -> API Rest
 export const DELETE_CUSTOM_PK = "DELETE_CUSTOM_PK"; //DELETE deletePkDB -> API Rest
+export const CLEAR_DETAIL = "CLEAR_DETAIL"; 
 export const NEXT_PAGE = "NEXT_PAGE";
 export const PREVIOUS_PAGE = "PREVIOUS_PAGE";
 export const RESET_PAGE = "RESET_PAGE";

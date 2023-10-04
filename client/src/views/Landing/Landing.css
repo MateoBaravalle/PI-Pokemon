@@ -2,10 +2,10 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  font-family: 'Architects Daughter', cursive;
+  font-family: "Architects Daughter", cursive;
   align-items: center;
   justify-content: center;
-  background-image: url('C:/Users/Mateo/OneDrive/Escritorio/Henry/PI-Pokemon-main/client/src/assets/LandingBg.png');
+  background-image: url("C:/Users/Mateo/OneDrive/Escritorio/Henry/PI-Pokemon/client/src/assets/LandingBg.png");
   background-size: cover;
   background-position: 0px -185px;
 }
@@ -20,7 +20,8 @@
   border-radius: 50px;
   padding-left: 35px;
   box-shadow: 2.9px 2.9px 2.2px rgba(0, 0, 0, 0.019),
-    5.2px 5.2px 5.3px rgba(255, 255, 255, 0.023), 7px 7px 10px rgba(255, 255, 255, 0.025),
+    5.2px 5.2px 5.3px rgba(255, 255, 255, 0.023),
+    7px 7px 10px rgba(255, 255, 255, 0.025),
     8.7px 8.7px 17.9px rgba(255, 255, 255, 0.024),
     11.3px 11.3px 33.4px rgba(255, 255, 255, 0.023),
     20px 20px 80px rgba(255, 255, 255, 0.02);
@@ -37,7 +38,7 @@
   position: absolute;
   top: 12%;
   left: 14%;
-  font-family: 'Architects Daughter', cursive;
+  font-family: "Architects Daughter", cursive;
   font-size: 32px;
   font-weight: bold;
   color: #ffffff;

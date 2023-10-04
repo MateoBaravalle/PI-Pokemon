@@ -111,7 +111,7 @@ export const getOnePk = (id) => async (dispatch) => {
     const types = await axios.post("http://localhost:3001/types", {
       dataTypes,
     });
-    data.TYPES = types;
+    data.TYPES = types.data;
 
     dispatch({
       type: actions.GET_ONE_PK,
@@ -192,3 +192,9 @@ export const resetPage = () => {
     type: actions.RESET_PAGE,
   };
 };
+
+export const clearDetail = () => {
+  return {
+    type: actions.CLEAR_DETAIL,
+  };
+}

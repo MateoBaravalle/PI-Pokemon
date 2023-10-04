@@ -1,0 +1,66 @@
+.pkName {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  text-shadow: 2px 2px 7px #ffffff;
+}
+
+.detail-card {
+  height: 60%;
+  width: 50%;
+  align-self: center;
+  color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px #ccc;
+  background-color: rgb(0, 0, 0, 0.3);
+}
+
+.detail-card img {
+  width: auto;
+  height: 47%;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr) 1fr;
+  font-size: 20px;
+  grid-template-areas:
+    "hp atk"
+    "dfn spd"
+    "hgt wgt"
+    "type type";
+}
+
+.stats .hp {
+  grid-area: hp;
+}
+
+.stats .atk {
+  grid-area: atk;
+}
+
+.stats .dfn {
+  grid-area: dfn;
+}
+
+.stats .spd {
+  grid-area: spd;
+}
+
+.stats .hgt {
+  grid-area: hgt;
+}
+
+.stats .wgt {
+  grid-area: wgt;
+}
+
+.stats .type {
+  grid-area: type;
+}
