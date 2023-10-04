@@ -1,6 +1,6 @@
 import Logo from "../Logo/Logo";
-import UserMenu from "../UserMenu/UserMenu";
 import Nav from "../Nav/Nav";
+import UserMenu from "../UserMenu/UserMenu";
 import "./Header.css";
 
 const Header = () => {

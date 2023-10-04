@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { nextPage, previousPage } from "../../redux/actions";
-import Cards from "../../components/Cards/Cards";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Filter from "../../components/Filter/Filter";
+import Cards from "../../components/Cards/Cards";
 import "./Home.css";
 
 // This component is used to display the pokemon cards on the home page

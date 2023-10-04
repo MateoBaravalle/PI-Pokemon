@@ -1,9 +1,13 @@
 .header-container {
   display: flex;
-  height: auto;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  height: auto;
+  margin-bottom: 15px;
+  border-bottom-left-radius: 0.8rem;
+  border-bottom-right-radius: 0.8rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.12);
 }
 
 .logo {

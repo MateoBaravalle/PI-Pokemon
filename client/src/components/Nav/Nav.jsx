@@ -1,18 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import './Nav.css';
 
 const Nav = () => {
+  const location = useLocation();
   return (
     <nav className="nav">
       <ul>
         <li>
-          <Link to="/Home">Home</Link>
+          <Link to="/Home" className={`${location.pathname === '/Home' ? 'isActive' : ''}`}>Home</Link>
         </li>
         <li>
-          <Link to="/Detail/:id">Detail</Link>
+          <Link className={`${location.pathname.includes('/Detail') ? 'isActive' : 'inActive'}`}>Detail</Link>
         </li>
         <li>
-          <Link to="/Customs">Customs</Link>
+          <Link to="/Customs" className={`${location.pathname === '/Customs' ? 'isActive' : ''}`}>Customs</Link>
         </li>
       </ul>
     </nav>

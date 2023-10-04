@@ -6,6 +6,7 @@
   font-family: "Architect Daughter", cursive;
   height: 100vh;
   position: relative;
+  background-color: rgb(0, 0, 0, 0.15);
 }
 
 /* Agrega un pseudo-elemento para el fondo fijo */
