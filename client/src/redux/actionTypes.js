@@ -16,3 +16,6 @@ export const CLEAR_DETAIL = "CLEAR_DETAIL";
 export const NEXT_PAGE = "NEXT_PAGE";
 export const PREVIOUS_PAGE = "PREVIOUS_PAGE";
 export const RESET_PAGE = "RESET_PAGE";
+export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
+export const SORT_BY_STATS = "SORT_BY_STATS";
+export const ORDER_CHANGE = "ORDER_CHANGE";

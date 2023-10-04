@@ -1,9 +1,9 @@
 .home-container {
-  display: grid;
-  grid-template-rows: auto auto auto;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  height: max(auto, 100vh);
   color: #ffffff;
 }
 

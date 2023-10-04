@@ -197,4 +197,19 @@ export const clearDetail = () => {
   return {
     type: actions.CLEAR_DETAIL,
   };
-}
+};
+
+export const filterByType = (type, array) => async (dispatch) => {
+  if (type === "all")
+    dispatch({
+      type: actions.FILTER_BY_TYPE,
+      payload: {array: [], type: "all"}
+    });
+  const typeIDs = await axios.post(`http://localhost:3001/types/${type}`, {
+    array,
+  });
+  dispatch({
+    type: actions.FILTER_BY_TYPE,
+    payload: {array: typeIDs.data, type: type} 
+  });
+};

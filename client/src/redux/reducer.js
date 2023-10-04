@@ -2,7 +2,10 @@ import * as actions from "./actionTypes";
 
 const initialState = {
   pokemons: [],
-  ordenamiento: [],
+  sort: [],
+  filter: [],
+  order: false, // false = asc, true = desc
+  filterBy: "All",
   pokeDetail: {},
   authUser: false,
   user: {},
@@ -101,6 +104,12 @@ const rootReducer = (state = initialState, action) => {
           ...state,
           page: 1,
         };
+    case actions.FILTER_BY_TYPE:
+      return {
+        ...state,
+        filter: action.payload.array,
+        filterBy: action.payload.type,
+      };
     default:
       return state;
   }

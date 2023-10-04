@@ -9,9 +9,17 @@ import "./Home.css";
 const Home = () => {
   const page = useSelector((state) => state.page);
   const pokemons = useSelector((state) => state.pokemons);
+  const sort = useSelector((state) => state.sort);
+  const filter = useSelector((state) => state.filter);
   const dispatch = useDispatch();
 
-  const maxPage = Math.ceil(pokemons.length / 20);
+  const maxPage = Math.ceil(
+    (filter.length > 0
+      ? filter.length
+      : sort.length > 0
+      ? sort.length
+      : pokemons.length) / 12
+  );
 
   // Handling pagination
   function nextPageHandler() {
@@ -24,19 +32,26 @@ const Home = () => {
     dispatch(previousPage());
   }
 
-
   return (
     <div className="home-container">
-      <SearchBar />
+      <div className="home-inputs">
+        <SearchBar />
+      </div>
       <div className="home-cards-container">
         <Cards page={page} />
       </div>
       <div className="home-pagination">
-        <button className={`home-pagination-btn ${page === 1 ? 'hidden' : ''}`} onClick={previousPageHandler}>
+        <button
+          className={`home-pagination-btn ${page === 1 ? "hidden" : ""}`}
+          onClick={previousPageHandler}
+        >
           ←
-        </button>  
+        </button>
         <p className="home-pagination-page">{page}</p>
-        <button className={`home-pagination-btn ${page === maxPage ? 'hidden' : ''}`} onClick={nextPageHandler}>
+        <button
+          className={`home-pagination-btn ${page === maxPage ? "hidden" : ""}`}
+          onClick={nextPageHandler}
+        >
           →
         </button>
       </div>

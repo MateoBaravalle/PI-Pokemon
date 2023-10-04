@@ -1,14 +1,25 @@
-import { useDispatch, useSelector } from 'react-redux';
-import './Filter.css';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { filterByType } from "../../redux/actions";
+import "./Filter.css";
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const ordenamiento = useSelector((state) => state.ordenamiento);
+  const pokemons = useSelector((state) => state.pokemons);
+  const sort = useSelector((state) => state.sort);
+  const filterBy = useSelector((state) => state.filterBy);
+  const [type, setType] = useState("all");
 
   function typeHandler(e) {
-    console.log(e.target.value);
+    setType(e.target.value);
+
+    if (sort.length === 0) {
+      dispatch(filterByType(e.target.value, pokemons));
+    } else {
+      dispatch(filterByType(e.target.value, sort));
+    }
   }
-  
+
   function sortHandler(e) {
     console.log(e.target.value);
   }
@@ -17,10 +28,20 @@ const Filter = () => {
     console.log(e.target.value);
   }
 
+  useEffect(() => {
+    if (filterBy !== type) {
+      setType(filterBy);
+    }
+  }, [filterBy]); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <div className="filters-container">
       <label className="filter-label">Types </label>
-      <select className="filter-select type" onChange={typeHandler}>
+      <select
+        className="filter-select type"
+        value={type}
+        onChange={typeHandler}
+      >
         <option value="all">All</option>
         <option value="normal">Normal</option>
         <option value="fighting">Fighting</option>
@@ -59,6 +80,6 @@ const Filter = () => {
       </select>
     </div>
   );
-}
+};
 
 export default Filter;

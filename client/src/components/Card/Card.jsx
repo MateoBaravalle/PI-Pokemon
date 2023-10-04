@@ -4,10 +4,11 @@ import { getOnePk } from "../../redux/actions";
 import "./Card.css";
 
 const Card = ({ id }) => {
+  // console.log(id);
   const pokemons = useSelector((state) => state.pokemons);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   // Getting pokemon name from id
   const name = pokemons.find((pokemon) => pokemon.ID === id).NAME;
   // Handling click on card
@@ -15,9 +16,14 @@ const Card = ({ id }) => {
     dispatch(getOnePk(id));
     navigate(`/Detail/${id}`);
   }
-  
+
   return (
-    <div className="card" onClick={()=>{clickHandler(id)}}>
+    <div
+      className="card"
+      onClick={() => {
+        clickHandler(id);
+      }}
+    >
       <div className="card-img">
         <img
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`} //CAMBIAR
@@ -27,6 +33,6 @@ const Card = ({ id }) => {
       <div className="card-name">{name?.toUpperCase()}</div>
     </div>
   );
-}
+};
 
 export default Card;

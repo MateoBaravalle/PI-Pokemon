@@ -38,24 +38,30 @@ const getTypes = async (req, res) => {
 
 // POST operation filters all Pokemons by Type
 const filterPksbyType = async (req, res) => {
-  const { pokemons } = req.body;
+  const { array } = req.body;
   const type = req.params.type;
   let pkIDs = [];
-  
-  console.log(type);
-  console.log(pokemons);
   try {
-    pkIDs = await Promise.all(
-      pokemons.map(async (pokemon) => {
-        const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon.ID}`);
-        const types = data.types.map((type) => type.type.name);
-        if (types.includes(type)) {
-          return pokemon.ID;
-        }
+    const responses = await axios.all(
+      array.map(async (pokemon) => {
+        const response = await axios.get(
+          `https://pokeapi.co/api/v2/pokemon/${pokemon.ID}`
+        );
+        return response;
       })
     );
-    pkIDs = pkIDs.filter((pk) => pk !== undefined);
-    console.log(pkIDs);
+    pkIDs = await Promise.all(
+      responses
+        .filter((response) => response.status === 200)
+        .map(async (response) => {
+          const data = response.data;
+          if (data.types.some((t) => t.type.name === type)) {
+            return data.id;
+          }
+        })
+    );
+
+    pkIDs = pkIDs.filter((id) => id !== undefined);
     res.status(200).send(pkIDs);
   } catch (error) {
     console.error(error);
