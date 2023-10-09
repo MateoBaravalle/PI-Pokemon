@@ -4,19 +4,38 @@ import { getOnePk } from "../../redux/actions";
 import "./Card.css";
 
 const Card = ({ id }) => {
-  // console.log(id);
   const pokemons = useSelector((state) => state.pokemons);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  
+  let name;
   // Getting pokemon name from id
-  const name = pokemons.find((pokemon) => pokemon.ID === id).NAME;
+  if(id < 10000) {
+    name = pokemons[id - 1]?.NAME;
+  } else {
+    name = pokemons.find((pokemon) => pokemon.ID === id)?.NAME;
+  }
+
   // Handling click on card
   function clickHandler(id) {
     dispatch(getOnePk(id));
     navigate(`/Detail/${id}`);
   }
-
+  //Loading card
+  if (!name) {
+    return (
+      <div className="card">
+        <div className="card-img">
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/201.png"
+            alt="Loading"
+          />
+        </div>
+        <div className="card-name">Loading...</div>
+      </div>
+    );
+  }
+  // Rendering card
   return (
     <div
       className="card"

@@ -26,6 +26,12 @@ nav a {
   font-size: 1.3rem;
 }
 
+nav a:hover {
+  color: #ce0037;
+  text-shadow: 2px 2px 7px #ce0037;
+  transition: all 0.3s ease-in-out;
+}
+
 .isActive {
   transition: all 0.3s ease-in-out;
   color: #ce0037;

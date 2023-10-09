@@ -1,11 +1,12 @@
 import * as actions from "./actionTypes";
 
 const initialState = {
-  pokemons: [],
-  sort: [],
-  filter: [],
-  order: false, // false = asc, true = desc
-  filterBy: "All",
+  pokemons: [], // NAME, ID all pokemons / Local Storage
+  search: [], // NAME, ID search pokemons
+  filter: [], // ID -> filter by ID
+  sort: [], // ID -> sort by ID --
+  order: false, //|-\       false = asc, true = desc
+  filterBy: "All", //|--\ Los puedo pasar a Local Storage para no usar Redux y mirar ahi
   pokeDetail: {},
   authUser: false,
   user: {},
@@ -69,7 +70,7 @@ const rootReducer = (state = initialState, action) => {
     case actions.SEARCH_PK:
       return {
         ...state,
-        pokemons: action.payload,
+        search: action.payload,
       };
     case actions.UPDATE_CUSTOM_PK:
       return {
@@ -100,20 +101,34 @@ const rootReducer = (state = initialState, action) => {
         page: state.page - 1,
       };
     case actions.RESET_PAGE:
-        return {
-          ...state,
-          page: 1,
-        };
+      return {
+        ...state,
+        page: 1,
+      };
     case actions.FILTER_BY_TYPE:
       return {
         ...state,
-        filter: action.payload.array,
-        filterBy: action.payload.type,
+        filter: action.payload,
+      };
+    case actions.SORT_BY_STATS:
+      return {
+        ...state,
+        sort: action.payload,
+      };
+    case actions.ORDER_BY:
+      return {
+        ...state,
+        sort:
+          action.payload === true && state.sort[0] < state.sort[state.sort.length - 1]
+            ? state.sort.reverse()
+            : action.payload === false && state.sort[0] > state.sort[state.sort.length - 1]
+            ? state.sort.reverse()
+            : state.sort,
+        order: action.payload,
       };
     default:
       return state;
   }
-}
-
+};
 
 export default rootReducer;

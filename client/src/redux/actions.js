@@ -68,15 +68,6 @@ export const deleteUser = (id) => async (dispatch) => {
   }
 };
 
-export const getAllTypes = () => async () => {
-  try {
-    const msg = await axios.get("http://localhost:3001/types/all");
-    console.log(msg.data);
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 export const getAllPk = () => async (dispatch) => {
   try {
     const { data } = await axios.get(`http://localhost:3001/pokemon`);
@@ -89,15 +80,43 @@ export const getAllPk = () => async (dispatch) => {
   }
 };
 
+export const getAllSorts = () => async () => {
+  try {
+    const { data } = await axios.get("http://localhost:3001/sorts");
+    window.localStorage.setItem("sorts", JSON.stringify(data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getAllTypes = () => async () => {
+  try {
+    const msg = await axios.get("http://localhost:3001/types/all");
+    console.log(msg.data);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const searchPk = (name) => async (dispatch) => {
+  if (name.length === 0)
+    return dispatch({ type: actions.SEARCH_PK, payload: [] }); //PENDING
+
   try {
     const { data } = await axios.get(
       `http://localhost:3001/pokemon/name=${name}`
     );
-    dispatch({
-      type: actions.SEARCH_PK,
-      payload: data,
-    });
+    if (data.length > 0) {
+      dispatch({
+        type: actions.SEARCH_PK,
+        payload: data,
+      });
+    } else {
+      dispatch({
+        type: actions.SEARCH_PK,
+        payload: [{ error: "Pokemon not found" }],
+      });
+    }
   } catch (error) {
     console.error(error);
   }
@@ -200,16 +219,68 @@ export const clearDetail = () => {
 };
 
 export const filterByType = (type, array) => async (dispatch) => {
-  if (type === "all")
-    dispatch({
-      type: actions.FILTER_BY_TYPE,
-      payload: {array: [], type: "all"}
+  try {
+    if (type === "all") {
+      return dispatch({
+        type: actions.FILTER_BY_TYPE,
+        payload: [],
+      });
+    }
+
+    const { data } = await axios.post(`http://localhost:3001/types/${type}`, {
+      array,
     });
-  const typeIDs = await axios.post(`http://localhost:3001/types/${type}`, {
-    array,
-  });
-  dispatch({
-    type: actions.FILTER_BY_TYPE,
-    payload: {array: typeIDs.data, type: type} 
-  });
+
+    if (data.length > 0) {
+      return dispatch({
+        type: actions.FILTER_BY_TYPE,
+        payload: data,
+      });
+    }
+
+    return dispatch({
+      type: actions.FILTER_BY_TYPE,
+      payload: [{ error: "No pokemon found" }],
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const sortBy = (stat, array) => {
+  // Get the ordered array from localStorage
+  const Sorts = JSON.parse(window.localStorage.getItem("sorts"));
+  let ordered = [];
+
+  // If array is an array of objects, map it to get an array of ids
+  array = array.map((pk) => (pk.ID ? pk.ID : pk));
+
+  // If stat is id, order array by id (default)
+  if (stat === "id") {
+    ordered = array;
+  } else {
+    // Else, order array by stat
+    ordered = Sorts[stat]?.map((id) => {
+      const pk = array.find((p) => p === id);
+      return pk;
+    });
+
+    // Remove undefined values
+    ordered = ordered.filter((pk) => pk !== undefined);
+  }
+
+  // Return ordered array
+  return {
+    type: actions.SORT_BY_STATS,
+    payload: ordered,
+  };
+};
+
+export const orderBy = (order) => {
+  let orderType = JSON.parse(order);
+
+  return {
+    type: actions.ORDER_BY,
+    payload: orderType,
+  };
 };

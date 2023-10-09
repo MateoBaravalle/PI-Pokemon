@@ -9,6 +9,7 @@ import "./Home.css";
 const Home = () => {
   const page = useSelector((state) => state.page);
   const pokemons = useSelector((state) => state.pokemons);
+  const search = useSelector((state) => state.search);
   const sort = useSelector((state) => state.sort);
   const filter = useSelector((state) => state.filter);
   const dispatch = useDispatch();
@@ -18,6 +19,8 @@ const Home = () => {
       ? filter.length
       : sort.length > 0
       ? sort.length
+      : search.length > 0
+      ? search.length
       : pokemons.length) / 12
   );
 

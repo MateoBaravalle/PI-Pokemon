@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getAllPk, searchPk } from "../../redux/actions";
+import { searchPk } from "../../redux/actions";
 import Filter from "../Filter/Filter";
 import "./SearchBar.css";
 
@@ -13,9 +13,17 @@ const SearchBar = () => {
     setName(e.target.value);
 
     if (e.target.value === "") {
-      dispatch(getAllPk(""));
+      dispatch(searchPk(""));
     } else if (e.target.value.length > 2) {
       dispatch(searchPk(e.target.value));
+    }
+  }
+
+  // Handling enter key
+  function enterHandler(e) {
+    if (name === "") return;
+    else if (e.key === "Enter") {
+      dispatch(searchPk(name));
     }
   }
 
@@ -28,7 +36,8 @@ const SearchBar = () => {
           placeholder="Search..."
           value={name}
           onChange={changeHandler}
-          />
+          onKeyDown={enterHandler}
+        />
       </div>
       <Filter />
     </>
