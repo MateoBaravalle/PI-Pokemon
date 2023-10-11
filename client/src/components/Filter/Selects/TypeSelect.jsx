@@ -10,7 +10,7 @@ const TypeSelect = () => {
 
   function typeHandler(e) {
     setType(e.target.value);
-
+    
     if (search.length > 0) {
       dispatch(filterByType(e.target.value, search));
     } else {

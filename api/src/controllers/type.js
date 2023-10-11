@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Type } = require("../db");
+const { Pokemon, Type } = require("../db");
 
 // GET used once to populate DB
 const getAllTypes = async (req, res) => {
@@ -44,7 +44,9 @@ const filterPksbyType = async (req, res) => {
   try {
     const responses = await axios.all(
       array.map(async (pokemon) => {
-        const response = await axios.get(
+        const response = isNaN(pokemon.ID) ? await Pokemon.findOne({
+          where: { ID },
+        }) : await axios.get(
           `https://pokeapi.co/api/v2/pokemon/${pokemon.ID}`
         );
         return response;

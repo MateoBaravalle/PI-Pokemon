@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sortBy } from "../../../redux/actions";
 
-const SortSelect = () => {
+const SortSelect = ({ handleStat }) => {
   const dispatch = useDispatch();
   const pokemons = useSelector((state) => state.pokemons);
   const search = useSelector((state) => state.search);
@@ -11,6 +11,7 @@ const SortSelect = () => {
 
   function sortHandler(e) {
     setStat(e.target.value);
+    handleStat(e);
 
     if (filter.length > 0) {
       dispatch(sortBy(e.target.value, filter));

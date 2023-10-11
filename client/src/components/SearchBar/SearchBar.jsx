@@ -10,7 +10,7 @@ const SearchBar = () => {
 
   // Handling input change
   function changeHandler(e) {
-    setName(e.target.value);
+    setName(e.target.value.toUpperCase());
 
     if (e.target.value === "") {
       dispatch(searchPk(""));
@@ -32,7 +32,7 @@ const SearchBar = () => {
       <div className="search-bar-container">
         <input
           type="text"
-          className="search-bar"
+          className="search-bar-input"
           placeholder="Search..."
           value={name}
           onChange={changeHandler}

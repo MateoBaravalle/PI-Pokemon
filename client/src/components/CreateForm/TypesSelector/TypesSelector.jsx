@@ -1,40 +1,31 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import "./TypesCreate.css";
+import { useEffect, useState } from "react";
+import "./TypesSelector.css";
 
-const TypesCreate = ({ setTypes }) => {
-  const [data, setData] = useState([]);
-  const [text, setText] = useState("Select Types");
+const TypesCreate = ({ setTypes, data }) => {
+  const [text, setText] = useState("Select");
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(() => {
     let obj = {};
-    for (let i = 0; i < data.length; i++) {
-      obj[data[i].ID] = false;
+    for (let i = 0; i < 20; i++) {
+      obj[i + 1] = false;
     }
     return obj;
   });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await axios.get("http://localhost:3001/types/all");
-      setData(res.data);
-    };
-    fetchData();
-  }, []);
-
   const changeHandler = (e) => {
     setSelected({ ...selected, [e.target.id]: !selected[e.target.id] });
+  };
 
+  useEffect(() => {
     let types = [];
     for (let key in selected) {
       if (selected[key]) {
-        types.push(key);
+        types.push(Number(key));
       }
     }
-    console.log(types);
     setTypes(types);
-    setText(types.length > 0 ? types.join(", ") : "Select Types");
-  };
+    setText(types.length > 0 ? `${types.length} Selected` : "Select");
+  }, [selected]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="select-box">
@@ -48,7 +39,10 @@ const TypesCreate = ({ setTypes }) => {
       </div>
       <div className={`options-container ${isOpen ? "active" : ""}`}>
         {data.map((type, index) => (
-          <div className="option" key={index} checked={`${selected[type.ID]? 'checked': ''}`}>
+          <div
+            className={`option ${selected[type.ID] ? "checked" : ""}`}
+            key={index}
+          >
             <input
               type="checkbox"
               className="checkbox"
@@ -56,7 +50,7 @@ const TypesCreate = ({ setTypes }) => {
               value={selected[type.ID]}
               onChange={(e) => changeHandler(e)}
             />
-            <label htmlFor={type.ID}>{type.NAME}</label>
+            <label htmlFor={type.ID}>{type.NAME.toUpperCase()}</label>
           </div>
         ))}
       </div>

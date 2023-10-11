@@ -11,6 +11,7 @@ const initialState = {
   authUser: false,
   user: {},
   page: 1,
+  errors: {},
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -53,7 +54,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         pokemons: [
-          ...state.pokemons.filter((pokemon) => !isNaN(pokemon.id)),
+          ...state.pokemons.filter((pokemon) => isNaN(pokemon.id)),
           ...action.payload,
         ],
       };
@@ -118,13 +119,13 @@ const rootReducer = (state = initialState, action) => {
     case actions.ORDER_BY:
       return {
         ...state,
-        sort:
-          action.payload === true && state.sort[0] < state.sort[state.sort.length - 1]
-            ? state.sort.reverse()
-            : action.payload === false && state.sort[0] > state.sort[state.sort.length - 1]
-            ? state.sort.reverse()
-            : state.sort,
-        order: action.payload,
+        sort: action.payload.array,
+        order: action.payload.order,
+      };
+    case actions.ERRORS:
+      return {
+        ...state,
+        errors: action.payload,
       };
     default:
       return state;

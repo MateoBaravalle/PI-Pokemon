@@ -80,7 +80,6 @@ const cleanPkApi = (pkData) => {
   return cleanedPk;
 };
 
-
 // * GET operation for getting all Pokemons from PokeAPI and DB
 const getAllPk = async (req, res) => {
   try {
@@ -223,7 +222,10 @@ const createPkDB = async (req, res) => {
   } catch (error) {
     // Rollback transaction if any error occurs and send error response
     await t.rollback();
-    console.error(error);
+
+    if (error.original.detail?.includes(pkData.NAME)) {
+      return res.status(409).send("Pokemon already exists");
+    }
     res.status(500).send("Server Error");
   }
 };
@@ -282,7 +284,7 @@ const sortsPk = async (req, res) => {
     const { data } = await axios.get(
       `https://pokeapi.co/api/v2/pokemon?limit=1292`
     );
-    
+
     const pokemonsAPI = await Promise.all(
       data.results.map(async (pokemon) => {
         const response = await axios.get(pokemon.url);
@@ -292,7 +294,7 @@ const sortsPk = async (req, res) => {
           attack: response.data.stats[1].base_stat,
           defense: response.data.stats[2].base_stat,
           speed: response.data.stats[5].base_stat,
-        }
+        };
       })
     );
 
@@ -305,29 +307,36 @@ const sortsPk = async (req, res) => {
         attack: pokemon.ATTACK,
         defense: pokemon.DEFENSE,
         speed: pokemon.SPEED,
-      }
+      };
     });
 
     // Merge Pokemons from PokeAPI and DB
     const pokemons = [...pokemonsAPI, ...pokemonsDB];
 
     // Sort Pokemons by Life
-    const pokemonsByLife = pokemons.sort((a, b) => a.life - b.life).map(pokemon => pokemon.id);
+    const pokemonsByLife = pokemons
+      .sort((a, b) => a.life - b.life)
+      .map((pokemon) => pokemon.id);
     Sorts.life = pokemonsByLife;
 
     // Sort Pokemons by Attack
-    const pokemonsByAttack = pokemons.sort((a, b) => a.attack - b.attack).map(pokemon => pokemon.id);
+    const pokemonsByAttack = pokemons
+      .sort((a, b) => a.attack - b.attack)
+      .map((pokemon) => pokemon.id);
     Sorts.attack = pokemonsByAttack;
 
     // Sort Pokemons by Defense
-    const pokemonsByDefense = pokemons.sort((a, b) => a.defense - b.defense).map(pokemon => pokemon.id);
+    const pokemonsByDefense = pokemons
+      .sort((a, b) => a.defense - b.defense)
+      .map((pokemon) => pokemon.id);
     Sorts.defense = pokemonsByDefense;
 
     // Sort Pokemons by Speed
-    const pokemonsBySpeed = pokemons.sort((a, b) => a.speed - b.speed).map(pokemon => pokemon.id);
+    const pokemonsBySpeed = pokemons
+      .sort((a, b) => a.speed - b.speed)
+      .map((pokemon) => pokemon.id);
     Sorts.speed = pokemonsBySpeed;
-    
-    
+
     // Send Sorts
     res.send(Sorts);
   } catch (error) {
@@ -335,8 +344,7 @@ const sortsPk = async (req, res) => {
     console.error(error);
     res.status(500).send("Server Error");
   }
-}
-
+};
 
 module.exports = {
   getAllPk,

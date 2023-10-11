@@ -1,0 +1,35 @@
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  margin: 5px 0 20px 0;
+}
+
+.search-bar-input {
+  appearance: none;
+  border: 1px solid #cccccc80;
+  border-radius: 0.5rem;
+  padding: 0 40px 0 20px;
+  color: white;
+  background-color: rgb(0, 0, 0, 0.3);
+  font-family: "Architect Daughter", cursive;
+  font-size: 18px;
+}
+
+.search-bar-input::placeholder {
+  color: #ffffffb0;
+}
+
+.search-bar-input:focus {
+  outline: none;
+  text-shadow: 1px 1px 5px white;
+}
+
+.search-bar-input:hover {
+  cursor: pointer;
+  text-shadow: 1px 1px 5px white;
+  box-shadow: 0 0 5px white;
+  outline: white solid 1px;
+}

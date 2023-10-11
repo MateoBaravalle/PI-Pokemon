@@ -16,7 +16,8 @@ module.exports = (sequelize) => {
       unique: true,
       validate: {
         isAlpha: true,
-        len: [3, 50]
+        notContains: " ",
+        len: [3, 25]
       }
     },
     LIFE: {

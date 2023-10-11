@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { nextPage, previousPage } from "../../redux/actions";
+import { getCustomsPk, nextPage, previousPage } from "../../redux/actions";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Cards from "../../components/Cards/Cards";
 import "./Home.css";
+import { useEffect } from "react";
 
 // This component is used to display the pokemon cards on the home page
 // it will display up to 20 cards per page, and will have pagination
@@ -34,6 +35,10 @@ const Home = () => {
     if (page === 1) return;
     dispatch(previousPage());
   }
+
+  useEffect(() => {
+    dispatch(getCustomsPk());
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="home-container">

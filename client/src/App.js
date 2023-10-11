@@ -19,7 +19,7 @@ function App() {
     if (pokemons.length === 0) {
       dispatch(getAllPk());
       dispatch(getAllSorts());
-      getAllTypes();
+      dispatch(getAllTypes());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

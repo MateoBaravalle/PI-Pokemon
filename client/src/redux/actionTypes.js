@@ -20,3 +20,4 @@ export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
 export const SORT_BY_STATS = "SORT_BY_STATS";
 export const ORDER_CHANGE = "ORDER_CHANGE";
 export const ORDER_BY = "ORDER_BY";
+export const ERRORS = "ERRORS";

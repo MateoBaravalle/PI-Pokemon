@@ -100,7 +100,7 @@ export const getAllTypes = () => async () => {
 
 export const searchPk = (name) => async (dispatch) => {
   if (name.length === 0)
-    return dispatch({ type: actions.SEARCH_PK, payload: [] }); //PENDING
+    return dispatch({ type: actions.SEARCH_PK, payload: [] });
 
   try {
     const { data } = await axios.get(
@@ -156,13 +156,25 @@ export const getCustomsPk = () => async (dispatch) => {
 export const createCustomPk = (pokemon) => async (dispatch) => {
   try {
     const { data } = await axios.post(`http://localhost:3001/pokemon`, pokemon);
+    alert("Pokemon created successfully!");
     dispatch({
       type: actions.CREATE_CUSTOM_PK,
       payload: data,
     });
-    if (!data.error) return data;
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+    if (err.response.status === 409) {
+      alert("Pokemon already exists!");
+      dispatch({
+        type: actions.ERRORS,
+        payload: { msg: "Pokemon already exists!" },
+      });
+    } else {
+      alert("Something went wrong!");
+      dispatch({
+        type: actions.ERRORS,
+        payload: { msg: "Something went wrong!" },
+      });
+    }
   }
 };
 
@@ -276,11 +288,17 @@ export const sortBy = (stat, array) => {
   };
 };
 
-export const orderBy = (order) => {
-  let orderType = JSON.parse(order);
+export const orderBy = (order, stat, array) => {
+  const orderType = JSON.parse(order);
+  let { payload } = sortBy(stat, array);
+  const ordered = { array: payload, order: orderType };
+
+  if (orderType) {
+    payload.reverse();
+  }
 
   return {
     type: actions.ORDER_BY,
-    payload: orderType,
+    payload: ordered,
   };
 };
