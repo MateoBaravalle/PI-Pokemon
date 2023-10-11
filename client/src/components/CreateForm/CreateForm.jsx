@@ -38,7 +38,7 @@ const CreateForm = () => {
     // Validate name isAlphanumeric without spaces (3-50 characters)
     const nameRegex = /^[a-zA-Z0-9]{3,25}$/;
     if (!nameRegex.test(newName)) {
-      setErrors({ ...errors, name: "Alphanum no spaces (3-25)" });
+      setErrors({ ...errors, name: "Alphanum no spaces (3-25)" }); 
     } else {
       setErrors({ ...errors, name: "" });
     }
@@ -131,11 +131,12 @@ const CreateForm = () => {
     setCreated({ ...created, WEIGHT: newWeight });
   };
   const setImage = (newImage) => {
+    
     //Validate image is a url (RegEx)
     const urlRegex =
-      /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+    /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
 
-    if (!urlRegex.test(created.IMAGE)) {
+    if (!urlRegex.test(newImage)) {
       setErrors({ ...errors, image: "Not valid URL" });
     } else {
       setErrors({ ...errors, image: "" });
@@ -145,24 +146,23 @@ const CreateForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    // handle form submission here  
+    // handle form submission here
     dispatch(createCustomPk(created));
     setCreated({
-        NAME: "",
-        TYPES: [],
-        LIFE: "",
-        ATTACK: "",
-        DEFENSE: "",
-        SPEED: "",
-        HEIGHT: "",
-        WEIGHT: "",
-        IMAGE: "",
+      NAME: "",
+      TYPES: [],
+      LIFE: "",
+      ATTACK: "",
+      DEFENSE: "",
+      SPEED: "",
+      HEIGHT: "",
+      WEIGHT: "",
+      IMAGE: "",
     });
-    
-    if(!GB_ERRORS.msg) {
+
+    if (!GB_ERRORS.msg) {
       navig("/Home");
     }
-
   };
 
   useEffect(() => {
@@ -194,7 +194,7 @@ const CreateForm = () => {
         <div className="input-box atk">
           <label className="input-label">Attack:</label>
           <input
-            type="number"
+            type="text"
             value={created.ATTACK}
             onChange={(e) => setAttack(e.target.value)}
           />
@@ -258,7 +258,11 @@ const CreateForm = () => {
           <TypesCreate setTypes={setTypes} data={data} />
           <span>{errors.types}</span>
         </div>
-        <button type="button" className={`input-btn ${isOk()}`} onClick={handleSubmit}>
+        <button
+          type="button"
+          className={`input-btn ${isOk()}`}
+          onClick={handleSubmit}
+        >
           Create !
         </button>
       </div>

@@ -30,6 +30,6 @@ router.delete(
   "/pokemon/:id([0-9a-f]{8}-[0-9a-f]{4}-[4][0-9a-f]{3}-[89abAB][0-9a-f]{3}-[0-9a-f]{12})",
   deletePkDB
 ); // Used to delete a custom pokemon
-router.get("/sorts", sortsPk); // Used to sort pokemons")
+router.get("/sorts", sortsPk); // Used to sort pokemons
 
 module.exports = router;

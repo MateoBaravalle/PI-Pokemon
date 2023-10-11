@@ -41,24 +41,32 @@ const filterPksbyType = async (req, res) => {
   const { array } = req.body;
   const type = req.params.type;
   let pkIDs = [];
+
   try {
     const responses = await axios.all(
       array.map(async (pokemon) => {
-        const response = isNaN(pokemon.ID) ? await Pokemon.findOne({
-          where: { ID },
-        }) : await axios.get(
-          `https://pokeapi.co/api/v2/pokemon/${pokemon.ID}`
-        );
+        const response = isNaN(pokemon.ID)
+          ? await Pokemon.findOne({
+              where: { ID: pokemon.ID },
+              include: Type,
+            })
+          : await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon.ID}`);
         return response;
       })
     );
     pkIDs = await Promise.all(
+      // IF response is from DB, use dataValues, else use data
       responses
-        .filter((response) => response.status === 200)
-        .map(async (response) => {
-          const data = response.data;
-          if (data.types.some((t) => t.type.name === type)) {
-            return data.id;
+        .map((response) => response?.dataValues || response?.data)
+        .map(async (data) => {
+          if (data.types[0]?.dataValues) {
+            return data.types.some((t) => t.dataValues.NAME === type)
+              ? data.ID
+              : undefined;
+          } else {
+            return data.types.some((t) => t.type.name === type)
+              ? data.id
+              : undefined;
           }
         })
     );

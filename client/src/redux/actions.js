@@ -91,8 +91,7 @@ export const getAllSorts = () => async () => {
 
 export const getAllTypes = () => async () => {
   try {
-    const msg = await axios.get("http://localhost:3001/types/all");
-    console.log(msg.data);
+    await axios.get("http://localhost:3001/types/all");
   } catch (error) {
     console.error(error);
   }
@@ -163,17 +162,17 @@ export const createCustomPk = (pokemon) => async (dispatch) => {
     });
   } catch (err) {
     if (err.response.status === 409) {
-      alert("Pokemon already exists!");
       dispatch({
         type: actions.ERRORS,
         payload: { msg: "Pokemon already exists!" },
       });
+      alert("Pokemon name already exists!");
     } else {
-      alert("Something went wrong!");
       dispatch({
         type: actions.ERRORS,
         payload: { msg: "Something went wrong!" },
       });
+      alert("Something went wrong!");
     }
   }
 };

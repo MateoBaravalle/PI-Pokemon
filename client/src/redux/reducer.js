@@ -1,12 +1,12 @@
 import * as actions from "./actionTypes";
 
 const initialState = {
-  pokemons: [], // NAME, ID all pokemons / Local Storage
+  pokemons: [], // NAME, ID all pokemons -- Not Change
   search: [], // NAME, ID search pokemons
   filter: [], // ID -> filter by ID
   sort: [], // ID -> sort by ID --
   order: false, //|-\       false = asc, true = desc
-  filterBy: "All", //|--\ Los puedo pasar a Local Storage para no usar Redux y mirar ahi
+  filterBy: "All",
   pokeDetail: {},
   authUser: false,
   user: {},
@@ -51,6 +51,7 @@ const rootReducer = (state = initialState, action) => {
         pokemons: action.payload,
       };
     case actions.GET_CUSTOMS_PK:
+      console.log(action.payload);
       return {
         ...state,
         pokemons: [

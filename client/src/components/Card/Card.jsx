@@ -21,21 +21,7 @@ const Card = ({ id }) => {
     dispatch(getOnePk(id));
     navigate(`/Detail/${id}`);
   }
-  //Loading card
-  if (!name) {
-    return (
-      <div className="card">
-        <div className="card-img">
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/201.png"
-            alt="Loading"
-          />
-        </div>
-        <div className="card-name">Loading...</div>
-      </div>
-    );
-  }
-  // Rendering card
+  
   return (
     <div
       className="card"
@@ -45,7 +31,7 @@ const Card = ({ id }) => {
     >
       <div className="card-img">
         <img
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`} //CAMBIAR
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
           alt={name}
         />
       </div>

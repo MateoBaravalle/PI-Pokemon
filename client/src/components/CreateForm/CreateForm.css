@@ -123,7 +123,7 @@
 
 .input-btn.disabled {
   background-color: #cccccc50;
-  border: 1px solid #cccccc50;
-  color: #fff;
-  cursor: not-allowed;
+  border: 1px solid #8B0000;
+  color: #8B0000;
+  pointer-events: none;
 }
